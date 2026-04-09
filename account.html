@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - FreshKart</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <button class="dark-mode-toggle" id="darkModeToggle"><i class="fas fa-moon"></i></button>
+    
+    <header class="main-header">
+        <div class="container">
+            <div class="logo"><h1>Fresh<span>Kart</span></h1><p>Grocery Delivery</p></div>
+            <div class="search-bar"><i class="fas fa-search"></i><input type="text" placeholder="Search..."></div>
+            <div class="header-actions"><button class="cart-btn" id="cartBtn"><i class="fas fa-shopping-cart"></i><span>Cart</span><span class="cart-count" id="cartCount">0</span></button></div>
+        </div>
+    </header>
+
+    <div class="account-container">
+        <div class="container">
+            <div class="account-header">
+                <div class="avatar"><i class="fas fa-user-circle"></i></div>
+                <h2>Welcome back, Guest!</h2>
+                <button class="login-btn-main" id="loginBtnMain">Sign In / Register</button>
+            </div>
+            
+            <div class="account-details" id="accountDetails" style="display: none;">
+                <div class="detail-card"><h3>Personal Information</h3><p>Name: <span id="userName">John Doe</span></p><p>Email: <span id="userEmail">john@example.com</span></p><p>Phone: <span id="userPhone">+91 98765 43210</span></p><button class="edit-btn">Edit Profile</button></div>
+                <div class="detail-card"><h3>Address Book</h3><div class="address"><p>Home: 123, Main Street, New Delhi - 110001</p><button>Edit</button></div><div class="address"><p>Office: 456, Business Park, Gurgaon - 122001</p><button>Edit</button></div><button class="add-address">+ Add New Address</button></div>
+                <div class="detail-card"><h3>Payment Methods</h3><div class="payment"><i class="fab fa-cc-visa"></i><p>VISA ending in 1234</p><button>Remove</button></div><button class="add-payment">+ Add Payment Method</button></div>
+                <div class="detail-card"><h3>Settings</h3><label><input type="checkbox" id="emailNotif"> Email Notifications</label><label><input type="checkbox" id="smsNotif"> SMS Alerts</label><button class="save-settings">Save Settings</button></div>
+            </div>
+            
+            <div class="order-history">
+                <h3>Recent Orders</h3>
+                <div class="order-list" id="orderHistory"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer"><div class="container"><div class="footer-bottom"><p>© 2024 FreshKart</p></div></div></footer>
+
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item"><i class="fas fa-home"></i><span>Home</span></a>
+        <a href="orders.html" class="nav-item"><i class="fas fa-shopping-bag"></i><span>Orders</span></a>
+        <a href="categories.html" class="nav-item"><i class="fas fa-th-large"></i><span>Category</span></a>
+        <a href="account.html" class="nav-item active"><i class="fas fa-user"></i><span>Account</span></a>
+        <a href="#" class="nav-item" id="bottomCartBtn"><i class="fas fa-shopping-cart"></i><span>Cart</span><span class="bottom-cart-count">0</span></a>
+    </nav>
+
+    <div class="cart-sidebar" id="cartSidebar"><div class="cart-header"><h3>My Cart</h3><button class="close-cart">&times;</button></div><div class="cart-items" id="cartItemsList"></div><div class="cart-footer"><div class="cart-total"><span>Total:</span><span id="cartTotalPrice">₹0</span></div><button class="checkout-btn">Place Order</button></div></div>
+    <div class="overlay" id="overlay"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

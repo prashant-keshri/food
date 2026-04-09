@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Daily Subscription - FreshKart</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        /* Additional Subscription Page Styles */
+        .subscription-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 20px;
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .subscription-hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .subscription-hero p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .subscription-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.2);
+            padding: 15px 25px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 14px;
+        }
+
+        /* Plan Cards */
+        .plans-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .plan-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+        }
+
+        .plan-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .plan-card.popular {
+            border: 2px solid #ff9800;
+            transform: scale(1.02);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: #ff9800;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .plan-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .plan-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .plan-price {
+            font-size: 36px;
+            font-weight: 800;
+            color: #2e7d32;
+            margin-bottom: 5px;
+        }
+
+        .plan-price span {
+            font-size: 16px;
+            font-weight: normal;
+            color: var(--text-secondary);
+        }
+
+        .plan-period {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .plan-features li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .plan-features li i {
+            color: #4caf50;
+            font-size: 14px;
+        }
+
+        .subscribe-plan-btn {
+            width: 100%;
+            padding: 14px;
+            background: #ff9800;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .subscribe-plan-btn:hover {
+            background: #f57c00;
+        }
+
+        /* Daily Essentials Section */
+        .essentials-section {
+            margin: 40px 0;
+        }
+
+        .essentials-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .essentials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .essential-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid var(--border-color);
+        }
+
+        .essential-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .essential-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 15px;
+        }
+
+        .essential-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .essential-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .essential-price {
+            color: #2e7d32;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .essential-frequency {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .freq-btn {
+            padding: 4px 12px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-primary);
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .freq-btn.active {
+            background: #ff9800;
+            color: white;
+            border-color: #ff9800;
+        }
+
+        .add-to-subscription {
+            width: 100%;
+            padding: 8px;
+            background: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        /* My Subscriptions Section */
+        .my-subscriptions {
+            margin: 40px 0;
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+        }
+
+        .subscription-list {
+            margin-top: 20px;
+        }
+
+        .subscription-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .subscription-item:last-child {
+            border-bottom: none;
+        }
+
+        .subscription-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .subscription-info p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .subscription-status {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-active {
+            background: #4caf50;
+            color: white;
+        }
+
+        .status-paused {
+            background: #ff9800;
+            color: white;
+        }
+
+        .subscription-actions button {
+            padding: 8px 15px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .pause-btn {
+            background: #ff9800;
+            color: white;
+        }
+
+        .cancel-btn {
+            background: #f44336;
+            color: white;
+        }
+
+        /* Delivery Schedule */
+        .delivery-schedule {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .schedule-day {
+            text-align: center;
+            padding: 15px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid var(--border-color);
+        }
+
+        .schedule-day.selected {
+            background: #ff9800;
+            color: white;
+            border-color: #ff9800;
+        }
+
+        .schedule-day .day-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .schedule-day .day-date {
+            font-size: 12px;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin: 40px 0;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .faq-answer {
+            padding: 0 20px 20px;
+            display: none;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        /* Referral Section */
+        .referral-section {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            color: white;
+            margin: 40px 0;
+        }
+
+        .referral-code {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 12px;
+            margin: 20px auto;
+            display: inline-block;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .copy-btn {
+            background: white;
+            color: #f5576c;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .subscription-hero h1 {
+                font-size: 32px;
+            }
+            
+            .schedule-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .plans-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .plan-card.popular {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="dark-mode-toggle" id="darkModeToggle"><i class="fas fa-moon"></i></button>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <h1>Fresh<span>Kart</span></h1>
+                <p>Grocery Delivery</p>
+            </div>
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search subscription items..." id="searchSubscription">
+            </div>
+            <div class="header-actions">
+                <button class="cart-btn" id="cartBtn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Cart</span>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Subscription Hero Section -->
+    <section class="subscription-hero">
+        <div class="container">
+            <h1>📦 Daily Subscription</h1>
+            <p>Never run out of essentials. Get your daily needs delivered automatically</p>
+            <div class="subscription-stats">
+                <div class="stat-card">
+                    <div class="stat-number">10,000+</div>
+                    <div class="stat-label">Happy Subscribers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">On-time Delivery</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">₹500+</div>
+                    <div class="stat-label">Average Savings</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Subscription Plans -->
+        <div class="plans-container">
+            <div class="plan-card" data-plan="basic">
+                <div class="plan-icon">🥛</div>
+                <div class="plan-name">Basic Plan</div>
+                <div class="plan-price">₹999 <span>/month</span></div>
+                <div class="plan-period">Billed monthly</div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> Daily milk & bread</li>
+                    <li><i class="fas fa-check"></i> 5 fresh veggies weekly</li>
+                    <li><i class="fas fa-check"></i> Free delivery on all orders</li>
+                    <li><i class="fas fa-check"></i> Cancel anytime</li>
+                </ul>
+                <button class="subscribe-plan-btn" onclick="selectPlan('basic')">Choose Basic Plan</button>
+            </div>
+
+            <div class="plan-card popular" data-plan="family">
+                <div class="popular-badge">⭐ Most Popular</div>
+                <div class="plan-icon">👨‍👩‍👧‍👦</div>
+                <div class="plan-name">Family Plan</div>
+                <div class="plan-price">₹1999 <span>/month</span></div>
+                <div class="plan-period">Billed monthly</div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> Daily milk, bread & eggs</li>
+                    <li><i class="fas fa-check"></i> 10 fresh veggies weekly</li>
+                    <li><i class="fas fa-check"></i> Free fruits basket monthly</li>
+                    <li><i class="fas fa-check"></i> Priority delivery (6-8 AM)</li>
+                    <li><i class="fas fa-check"></i> 10% off on all products</li>
+                </ul>
+                <button class="subscribe-plan-btn" onclick="selectPlan('family')">Choose Family Plan</button>
+            </div>
+
+            <div class="plan-card" data-plan="premium">
+                <div class="plan-icon">💎</div>
+                <div class="plan-name">Premium Plan</div>
+                <div class="plan-price">₹2999 <span>/month</span></div>
+                <div class="plan-period">Billed monthly</div>
+                <ul class="plan-features">
+                    <li><i class="fas fa-check"></i> All daily essentials</li>
+                    <li><i class="fas fa-check"></i> Organic veggies & fruits</li>
+                    <li><i class="fas fa-check"></i> Free juices & snacks weekly</li>
+                    <li><i class="fas fa-check"></i> 24/7 dedicated support</li>
+                    <li><i class="fas fa-check"></i> 20% off on all products</li>
+                    <li><i class="fas fa-check"></i> Free festive hampers</li>
+                </ul>
+                <button class="subscribe-plan-btn" onclick="selectPlan('premium')">Choose Premium Plan</button>
+            </div>
+        </div>
+
+        <!-- Daily Essentials Section -->
+        <div class="essentials-section">
+            <div class="essentials-header">
+                <h2><i class="fas fa-calendar-day"></i> Customize Your Daily Essentials</h2>
+                <div class="category-filters">
+                    <button class="filter-essential-btn active" data-filter="all">All</button>
+                    <button class="filter-essential-btn" data-filter="dairy">Dairy</button>
+                    <button class="filter-essential-btn" data-filter="bakery">Bakery</button>
+                    <button class="filter-essential-btn" data-filter="fruits">Fruits</button>
+                    <button class="filter-essential-btn" data-filter="vegetables">Vegetables</button>
+                    <button class="filter-essential-btn" data-filter="beverages">Beverages</button>
+                </div>
+            </div>
+            <div class="essentials-grid" id="essentialsGrid">
+                <!-- Essential items will be loaded here -->
+            </div>
+        </div>
+
+        <!-- My Active Subscriptions -->
+        <div class="my-subscriptions">
+            <h2><i class="fas fa-tasks"></i> My Active Subscriptions</h2>
+            <div class="subscription-list" id="subscriptionList">
+                <!-- Active subscriptions will appear here -->
+            </div>
+        </div>
+
+        <!-- Delivery Schedule -->
+        <div class="delivery-schedule">
+            <h2><i class="fas fa-calendar-alt"></i> Delivery Schedule</h2>
+            <p>Select your preferred delivery days</p>
+            <div class="schedule-grid" id="scheduleGrid">
+                <!-- Schedule days will be generated here -->
+            </div>
+            <button class="save-schedule-btn" onclick="saveDeliverySchedule()" style="margin-top:20px;padding:12px 30px;background:#ff9800;color:white;border:none;border-radius:8px;cursor:pointer;">Save Schedule</button>
+        </div>
+
+        <!-- Referral & Earn -->
+        <div class="referral-section">
+            <h3><i class="fas fa-gift"></i> Refer & Earn</h3>
+            <p>Invite your friends and get ₹200 off on your next subscription</p>
+            <div class="referral-code">
+                FRESHKART2024
+                <button class="copy-btn" onclick="copyReferralCode()">Copy Code</button>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>How does the subscription work?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">You can choose a plan that suits your needs. We'll deliver your selected essentials daily/weekly as per your schedule. You can pause, modify, or cancel anytime.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Can I change my subscription items?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">Yes! You can modify your subscription items anytime before 8 PM for next day delivery. Add or remove items as per your needs.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>What is the cancellation policy?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">You can cancel your subscription anytime. For monthly plans, the current month will be completed and no further charges will be applied.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>What if I'm not home during delivery?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">We'll leave it at your doorstep or with a neighbor. You can also reschedule delivery through our app.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>FreshKart</h3>
+                    <p>India's fastest growing grocery delivery service</p>
+                </div>
+                <div class="footer-col">
+                    <h4>About</h4>
+                    <a href="#">Contact Us</a>
+                    <a href="#">About Us</a>
+                    <a href="#">Careers</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Policy</h4>
+                    <a href="#">Return Policy</a>
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Privacy</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Help</h4>
+                    <a href="#">FAQs</a>
+                    <a href="#">Shipping</a>
+                    <a href="#">Cancellation</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 FreshKart - All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="orders.html" class="nav-item">
+            <i class="fas fa-shopping-bag"></i>
+            <span>Orders</span>
+        </a>
+        <a href="categories.html" class="nav-item">
+            <i class="fas fa-th-large"></i>
+            <span>Category</span>
+        </a>
+        <a href="account.html" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>Account</span>
+        </a>
+        <a href="subscription.html" class="nav-item active">
+            <i class="fas fa-calendar-check"></i>
+            <span>Subscribe</span>
+        </a>
+        <a href="#" class="nav-item" id="bottomCartBtn">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Cart</span>
+            <span class="bottom-cart-count" id="bottomCartCount">0</span>
+        </a>
+    </nav>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>My Cart</h3>
+            <button class="close-cart" id="closeCart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItemsList"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotalPrice">₹0</span>
+            </div>
+            <button class="checkout-btn">Place Order</button>
+        </div>
+    </div>
+    <div class="overlay" id="overlay"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Additional Subscription Page JavaScript
+        let userSubscriptions = JSON.parse(localStorage.getItem('userSubscriptions')) || [];
+        let deliverySchedule = JSON.parse(localStorage.getItem('deliverySchedule')) || ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+        let selectedEssentials = JSON.parse(localStorage.getItem('selectedEssentials')) || [];
+
+        // Essential items data
+        const essentialItems = [
+            { id: 1, name: "Fresh Milk", category: "dairy", price: 60, unit: "1 L", image: "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=150", frequency: "daily" },
+            { id: 2, name: "Whole Wheat Bread", category: "bakery", price: 40, unit: "400 g", image: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=150", frequency: "daily" },
+            { id: 3, name: "Organic Eggs", category: "dairy", price: 90, unit: "6 pcs", image: "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=150", frequency: "daily" },
+            { id: 4, name: "Fresh Apples", category: "fruits", price: 120, unit: "1 kg", image: "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=150", frequency: "weekly" },
+            { id: 5, name: "Bananas", category: "fruits", price: 49, unit: "6 pcs", image: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=150", frequency: "daily" },
+            { id: 6, name: "Orange Juice", category: "beverages", price: 99, unit: "1 L", image: "https://images.unsplash.com/photo-1613478223719-2ab802602423?w=150", frequency: "weekly" },
+            { id: 7, name: "Fresh Carrots", category: "vegetables", price: 35, unit: "500 g", image: "https://images.unsplash.com/photo-1447175008436-054170c2e979?w=150", frequency: "daily" },
+            { id: 8, name: "Tomatoes", category: "vegetables", price: 40, unit: "500 g", image: "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=150", frequency: "daily" },
+            { id: 9, name: "Butter", category: "dairy", price: 55, unit: "100 g", image: "https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=150", frequency: "weekly" },
+            { id: 10, name: "Cheese Slice", category: "dairy", price: 85, unit: "200 g", image: "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=150", frequency: "weekly" },
+            { id: 11, name: "Cold Coffee", category: "beverages", price: 120, unit: "250 ml", image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=150", frequency: "weekly" },
+            { id: 12, name: "Protein Bar", category: "snacks", price: 75, unit: "50 g", image: "https://images.unsplash.com/photo-1622484212745-75f3c78b1b3c?w=150", frequency: "daily" }
+        ];
+
+        // Display essentials grid
+        function displayEssentials(filter = 'all') {
+            const grid = document.getElementById('essentialsGrid');
+            if (!grid) return;
+            
+            let filtered = essentialItems;
+            if (filter !== 'all') {
+                filtered = essentialItems.filter(item => item.category === filter);
+            }
+            
+            grid.innerHTML = filtered.map(item => `
+                <div class="essential-card">
+                    <div class="essential-image">
+                        <img src="${item.image}" alt="${item.name}">
+                    </div>
+                    <div class="essential-name">${item.name}</div>
+                    <div class="essential-price">₹${item.price} / ${item.unit}</div>
+                    <div class="essential-frequency">
+                        <button class="freq-btn ${selectedEssentials.some(e => e.id === item.id && e.frequency === 'daily') ? 'active' : ''}" onclick="setFrequency(${item.id}, 'daily')">Daily</button>
+                        <button class="freq-btn ${selectedEssentials.some(e => e.id === item.id && e.frequency === 'weekly') ? 'active' : ''}" onclick="setFrequency(${item.id}, 'weekly')">Weekly</button>
+                    </div>
+                    <button class="add-to-subscription" onclick="addToSubscription(${item.id})">
+                        ${selectedEssentials.some(e => e.id === item.id) ? '✓ Added' : '+ Add to Subscription'}
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // Set frequency for essential item
+        function setFrequency(itemId, frequency) {
+            const existing = selectedEssentials.find(e => e.id === itemId);
+            if (existing) {
+                existing.frequency = frequency;
+                localStorage.setItem('selectedEssentials', JSON.stringify(selectedEssentials));
+                displayEssentials(document.querySelector('.filter-essential-btn.active')?.dataset.filter || 'all');
+                showNotification(`Frequency updated to ${frequency}`);
+            }
+        }
+
+        // Add to subscription
+        function addToSubscription(itemId) {
+            const item = essentialItems.find(i => i.id === itemId);
+            const existing = selectedEssentials.find(e => e.id === itemId);
+            
+            if (existing) {
+                selectedEssentials = selectedEssentials.filter(e => e.id !== itemId);
+                showNotification(`${item.name} removed from subscription`);
+            } else {
+                selectedEssentials.push({ ...item, frequency: 'daily', quantity: 1 });
+                showNotification(`${item.name} added to subscription!`);
+            }
+            
+            localStorage.setItem('selectedEssentials', JSON.stringify(selectedEssentials));
+            displayEssentials(document.querySelector('.filter-essential-btn.active')?.dataset.filter || 'all');
+            displaySubscriptions();
+        }
+
+        // Select plan
+        function selectPlan(planType) {
+            const plans = {
+                basic: { name: 'Basic Plan', price: 999, features: ['Daily milk & bread', '5 fresh veggies weekly'] },
+                family: { name: 'Family Plan', price: 1999, features: ['Daily milk, bread & eggs', '10 fresh veggies weekly', 'Free fruits basket'] },
+                premium: { name: 'Premium Plan', price: 2999, features: ['All daily essentials', 'Organic products', 'Free juices & snacks'] }
+            };
+            
+            const plan = plans[planType];
+            const existingPlan = userSubscriptions.find(s => s.type === 'plan');
+            
+            if (existingPlan) {
+                if (confirm(`You already have ${existingPlan.name}. Do you want to change to ${plan.name}?`)) {
+                    existingPlan.name = plan.name;
+                    existingPlan.price = plan.price;
+                    existingPlan.features = plan.features;
+                }
+            } else {
+                userSubscriptions.push({
+                    id: Date.now(),
+                    type: 'plan',
+                    name: plan.name,
+                    price: plan.price,
+                    features: plan.features,
+                    status: 'active',
+                    startDate: new Date().toLocaleDateString(),
+                    items: [...selectedEssentials]
+                });
+            }
+            
+            localStorage.setItem('userSubscriptions', JSON.stringify(userSubscriptions));
+            displaySubscriptions();
+            showNotification(`${plan.name} activated successfully!`);
+        }
+
+        // Display active subscriptions
+        function displaySubscriptions() {
+            const container = document.getElementById('subscriptionList');
+            if (!container) return;
+            
+            if (userSubscriptions.length === 0 && selectedEssentials.length === 0) {
+                container.innerHTML = '<p style="text-align:center;padding:40px;">No active subscriptions. Choose a plan or add essentials above!</p>';
+                return;
+            }
+            
+            let html = '';
+            
+            // Display plan subscription
+            userSubscriptions.forEach(sub => {
+                html += `
+                    <div class="subscription-item">
+                        <div class="subscription-info">
+                            <h4>${sub.name}</h4>
+                            <p>Started: ${sub.startDate} | ₹${sub.price}/month</p>
+                            <p>Items: ${sub.items.length} essentials</p>
+                        </div>
+                        <div>
+                            <span class="subscription-status status-${sub.status}">${sub.status.toUpperCase()}</span>
+                        </div>
+                        <div class="subscription-actions">
+                            <button class="pause-btn" onclick="toggleSubscriptionStatus(${sub.id})">${sub.status === 'active' ? 'Pause' : 'Resume'}</button>
+                            <button class="cancel-btn" onclick="cancelSubscription(${sub.id})">Cancel</button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            // Display individual essentials (if no plan)
+            if (userSubscriptions.length === 0 && selectedEssentials.length > 0) {
+                html += `
+                    <div class="subscription-item">
+                        <div class="subscription-info">
+                            <h4>Custom Essentials Pack</h4>
+                            <p>${selectedEssentials.length} items selected</p>
+                            <p>Total: ₹${selectedEssentials.reduce((sum, item) => sum + item.price, 0)}/month</p>
+                        </div>
+                        <div>
+                            <span class="subscription-status status-active">ACTIVE</span>
+                        </div>
+                        <div class="subscription-actions">
+                            <button class="cancel-btn" onclick="cancelCustomSubscription()">Cancel</button>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            container.innerHTML = html;
+        }
+
+        // Toggle subscription status
+        function toggleSubscriptionStatus(subId) {
+            const sub = userSubscriptions.find(s => s.id === subId);
+            if (sub) {
+                sub.status = sub.status === 'active' ? 'paused' : 'active';
+                localStorage.setItem('userSubscriptions', JSON.stringify(userSubscriptions));
+                displaySubscriptions();
+                showNotification(`Subscription ${sub.status === 'active' ? 'resumed' : 'paused'}`);
+            }
+        }
+
+        // Cancel subscription
+        function cancelSubscription(subId) {
+            if (confirm('Are you sure you want to cancel this subscription?')) {
+                userSubscriptions = userSubscriptions.filter(s => s.id !== subId);
+                localStorage.setItem('userSubscriptions', JSON.stringify(userSubscriptions));
+                displaySubscriptions();
+                showNotification('Subscription cancelled');
+            }
+        }
+
+        // Cancel custom subscription
+        function cancelCustomSubscription() {
+            if (confirm('Are you sure you want to cancel your custom essentials subscription?')) {
+                selectedEssentials = [];
+                localStorage.setItem('selectedEssentials', JSON.stringify(selectedEssentials));
+                displayEssentials();
+                displaySubscriptions();
+                showNotification('Custom subscription cancelled');
+            }
+        }
+
+        // Display delivery schedule
+        function displayDeliverySchedule() {
+            const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+            const scheduleGrid = document.getElementById('scheduleGrid');
+            if (!scheduleGrid) return;
+            
+            const today = new Date();
+            
+            scheduleGrid.innerHTML = days.map((day, index) => {
+                const date = new Date(today);
+                date.setDate(today.getDate() + ((index + 7 - today.getDay()) % 7));
+                const isSelected = deliverySchedule.includes(day);
+                
+                return `
+                    <div class="schedule-day ${isSelected ? 'selected' : ''}" onclick="toggleScheduleDay('${day}')">
+                        <div class="day-name">${day}</div>
+                        <div class="day-date">${date.getDate()}/${date.getMonth() + 1}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Toggle schedule day
+        function toggleScheduleDay(day) {
+            if (deliverySchedule.includes(day)) {
+                deliverySchedule = deliverySchedule.filter(d => d !== day);
+            } else {
+                deliverySchedule.push(day);
+            }
+            localStorage.setItem('deliverySchedule', JSON.stringify(deliverySchedule));
+            displayDeliverySchedule();
+            showNotification(`Delivery schedule updated`);
+        }
+
+        // Save delivery schedule
+        function saveDeliverySchedule() {
+            localStorage.setItem('deliverySchedule', JSON.stringify(deliverySchedule));
+            showNotification('Delivery schedule saved!');
+        }
+
+        // Copy referral code
+        function copyReferralCode() {
+            navigator.clipboard.writeText('FRESHKART2024');
+            showNotification('Referral code copied! Share with friends to earn ₹200');
+        }
+
+        // Toggle FAQ
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            answer.classList.toggle('active');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        }
+
+        // Search functionality
+        document.getElementById('searchSubscription')?.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const filtered = essentialItems.filter(item => item.name.toLowerCase().includes(searchTerm));
+            const grid = document.getElementById('essentialsGrid');
+            if (grid) {
+                grid.innerHTML = filtered.map(item => `
+                    <div class="essential-card">
+                        <div class="essential-image"><img src="${item.image}"></div>
+                        <div class="essential-name">${item.name}</div>
+                        <div class="essential-price">₹${item.price}</div>
+                        <button class="add-to-subscription" onclick="addToSubscription(${item.id})">Add to Subscription</button>
+                    </div>
+                `).join('');
+            }
+        });
+
+        // Filter essential buttons
+        document.querySelectorAll('.filter-essential-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-essential-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                displayEssentials(btn.dataset.filter);
+            });
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            displayEssentials();
+            displaySubscriptions();
+            displayDeliverySchedule();
+        });
+
+        // Make functions global
+        window.selectPlan = selectPlan;
+        window.addToSubscription = addToSubscription;
+        window.setFrequency = setFrequency;
+        window.toggleSubscriptionStatus = toggleSubscriptionStatus;
+        window.cancelSubscription = cancelSubscription;
+        window.cancelCustomSubscription = cancelCustomSubscription;
+        window.toggleScheduleDay = toggleScheduleDay;
+        window.saveDeliverySchedule = saveDeliverySchedule;
+        window.copyReferralCode = copyReferralCode;
+        window.toggleFAQ = toggleFAQ;
+    </script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Fresh Organic Apples",
+      "category": "fruits",
+      "price": 120,
+      "oldPrice": 150,
+      "discount": "20% off",
+      "unit": "1 kg",
+      "image": "images/apples.jpg",
+      "rating": 4.5,
+      "inStock": true,
+      "isFeatured": true
+    },
+    {
+      "id": 2,
+      "name": "Farm Fresh Bananas",
+      "category": "fruits",
+      "price": 49,
+      "oldPrice": 60,
+      "discount": "18% off",
+      "unit": "6 pieces",
+      "image": "images/bananas.jpg",
+      "rating": 4.3,
+      "inStock": true,
+      "isFeatured": true
+    },
+    {
+      "id": 3,
+      "name": "Fresh Carrots",
+      "category": "vegetables",
+      "price": 35,
+      "oldPrice": 45,
+      "discount": "22% off",
+      "unit": "500 g",
+      "image": "images/carrots.jpg",
+      "rating": 4.2,
+      "inStock": true,
+      "isFeatured": false
+    },
+    {
+      "id": 4,
+      "name": "Tropicana Orange Juice",
+      "category": "beverages",
+      "price": 99,
+      "oldPrice": 120,
+      "discount": "17% off",
+      "unit": "1 L",
+      "image": "images/orange-juice.jpg",
+      "rating": 4.6,
+      "inStock": true,
+      "isFeatured": true
+    },
+    {
+      "id": 5,
+      "name": "Fresh Broccoli",
+      "category": "vegetables",
+      "price": 55,
+      "oldPrice": 70,
+      "discount": "21% off",
+      "unit": "500 g",
+      "image": "images/broccoli.jpg",
+      "rating": 4.4,
+      "inStock": true,
+      "isFeatured": false
+    },
+    {
+      "id": 6,
+      "name": "Cold Pressed Coconut Water",
+      "category": "beverages",
+      "price": 89,
+      "oldPrice": 110,
+      "discount": "19% off",
+      "unit": "500 ml",
+      "image": "images/coconut-water.jpg",
+      "rating": 4.7,
+      "inStock": true,
+      "isFeatured": true
+    },
+    {
+      "id": 7,
+      "name": "Fresh Spinach",
+      "category": "vegetables",
+      "price": 25,
+      "oldPrice": 35,
+      "discount": "28% off",
+      "unit": "250 g",
+      "image": "images/spinach.jpg",
+      "rating": 4.1,
+      "inStock": true,
+      "isFeatured": false
+    },
+    {
+      "id": 8,
+      "name": "Mixed Fruit Juice Pack",
+      "category": "beverages",
+      "price": 149,
+      "oldPrice": 180,
+      "discount": "17% off",
+      "unit": "4 x 200ml",
+      "image": "images/mixed-juice.jpg",
+      "rating": 4.5,
+      "inStock": true,
+      "isFeatured": false
+    }
+  ],
+  "categories": [
+    {"name": "Fruits & Vegetables", "icon": "🥬"},
+    {"name": "Dairy & Breakfast", "icon": "🥛"},
+    {"name": "Snacks & Beverages", "icon": "🥤"},
+    {"name": "Home & Kitchen", "icon": "🍳"}
+  ]
+}

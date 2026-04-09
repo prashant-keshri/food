@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories - FreshKart</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <button class="dark-mode-toggle" id="darkModeToggle"><i class="fas fa-moon"></i></button>
+    
+    <header class="main-header"><div class="container"><div class="logo"><h1>Fresh<span>Kart</span></h1></div><div class="search-bar"><i class="fas fa-search"></i><input type="text" placeholder="Search categories..." id="searchInput"></div><div class="header-actions"><button class="cart-btn" id="cartBtn"><i class="fas fa-shopping-cart"></i><span>Cart</span><span class="cart-count" id="cartCount">0</span></button></div></div></header>
+
+    <div class="categories-container">
+        <div class="container">
+            <h2><i class="fas fa-th-large"></i> Shop by Category</h2>
+            <div class="full-category-grid" id="fullCategoryGrid"></div>
+            <div class="category-products" id="categoryProducts">
+                <h3 id="selectedCategoryName">All Products</h3>
+                <div class="products-grid" id="categoryProductsGrid"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer"><div class="container"><div class="footer-bottom"><p>© 2024 FreshKart</p></div></div></footer>
+
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item"><i class="fas fa-home"></i><span>Home</span></a>
+        <a href="orders.html" class="nav-item"><i class="fas fa-shopping-bag"></i><span>Orders</span></a>
+        <a href="categories.html" class="nav-item active"><i class="fas fa-th-large"></i><span>Category</span></a>
+        <a href="account.html" class="nav-item"><i class="fas fa-user"></i><span>Account</span></a>
+        <a href="#" class="nav-item" id="bottomCartBtn"><i class="fas fa-shopping-cart"></i><span>Cart</span><span class="bottom-cart-count">0</span></a>
+    </nav>
+
+    <div class="cart-sidebar" id="cartSidebar"><div class="cart-header"><h3>My Cart</h3><button class="close-cart">&times;</button></div><div class="cart-items" id="cartItemsList"></div><div class="cart-footer"><div class="cart-total"><span>Total:</span><span id="cartTotalPrice">₹0</span></div><button class="checkout-btn">Place Order</button></div></div>
+    <div class="overlay" id="overlay"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>

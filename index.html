@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>FreshKart - Online Grocery Shopping</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+</head>
+<body data-theme="light">
+    <!-- Dark Mode Toggle Button -->
+    <button class="dark-mode-toggle" id="darkModeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-left">
+                <span><i class="fas fa-truck"></i> Free delivery on orders above ₹499</span>
+                <span><i class="fas fa-store"></i> 100% Fresh Guarantee</span>
+            </div>
+            <div class="top-right">
+                <span><i class="fas fa-phone"></i> 24/7 Support: 1800-123-4567</span>
+                <span><i class="fas fa-download"></i> Download App</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <h1>Fresh<span>Kart</span></h1>
+                <p>Grocery Delivery</p>
+            </div>
+            
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search for fruits, vegetables, juices, cakes & more..." id="searchInput">
+            </div>
+            
+            <div class="header-actions">
+                <div class="location-selector">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <select id="locationSelect">
+                        <option>Deliver to 110001</option>
+                        <option>Mumbai 400001</option>
+                        <option>Bangalore 560001</option>
+                    </select>
+                </div>
+                <button class="cart-btn" id="cartBtn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Cart</span>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner Slider -->
+    <section class="hero-section">
+        <div class="swiper heroSwiper">
+            <div class="swiper-wrapper" id="heroSlider">
+                 <!-- Hero slides will be loaded dynamically -->
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </section>
+
+    <!-- Quick Category Links -->
+    <section class="quick-categories">
+        <div class="container">
+            <div class="category-links">
+                <a href="categories.html?cat=meals" class="cat-link"><div class="cat-icon">🍛</div><span>Meals</span></a>
+                <a href="categories.html?cat=spicy" class="cat-link"><div class="cat-icon">🌶️</div><span>Spicy</span></a>
+                <a href="categories.html?cat=fruits" class="cat-link"><div class="cat-icon">🍎</div><span>Fruits</span></a>
+                <a href="categories.html?cat=juices" class="cat-link"><div class="cat-icon">🧃</div><span>Juices</span></a>
+                <a href="categories.html?cat=beverages" class="cat-link"><div class="cat-icon">☕</div><span>Beverages</span></a>
+                <a href="categories.html?cat=cakes" class="cat-link"><div class="cat-icon">🎂</div><span>Cakes</span></a>
+                <a href="categories.html?cat=icecream" class="cat-link"><div class="cat-icon">🍦</div><span>Ice Cream</span></a>
+                <a href="categories.html?cat=snacks" class="cat-link"><div class="cat-icon">🍿</div><span>Snacks</span></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recently Viewed Items (Circular, Swipable) -->
+    <section class="recently-viewed">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-history"></i> Recently Viewed</h2>
+                <a href="#" class="view-all">View All →</a>
+            </div>
+            <div class="swiper recentlySwiper">
+                <div class="swiper-wrapper" id="recentlyViewed"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Festival/Seasonal Section -->
+    <section class="festival-offers" id="festivalSection">
+        <div class="container">
+            <div class="festival-banner">
+                <div class="festival-content">
+                    <span class="festival-tag">🎉 DIWALI MEGA SALE 🎉</span>
+                    <h2>Up to 60% Off</h2>
+                    <p>on festive special items</p>
+                    <div class="countdown" id="countdown">
+                        <div class="time-box"><span id="days">00</span>d</div>
+                        <div class="time-box"><span id="hours">00</span>h</div>
+                        <div class="time-box"><span id="minutes">00</span>m</div>
+                        <div class="time-box"><span id="seconds">00</span>s</div>
+                    </div>
+                    <button class="shop-festive">Shop Now →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Offerings -->
+    <section class="our-offerings">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-leaf"></i> Our Premium Offerings</h2>
+                <div class="offer-tabs">
+                    <button class="tab-btn active" data-tab="featured">Featured</button>
+                    <button class="tab-btn" data-tab="best-selling">Best Selling</button>
+                    <button class="tab-btn" data-tab="new-arrivals">New Arrivals</button>
+                </div>
+            </div>
+            <div class="products-grid" id="offeringsGrid"></div>
+            <button class="load-more" id="loadMoreBtn">Load More →</button>
+        </div>
+    </section>
+
+    <!-- Daily Subscription Section (Swipable with down arrow) -->
+    <section class="daily-subscription">
+        <div class="container">
+            <div class="subscription-header">
+                <h3><i class="fas fa-calendar-check"></i> Daily Subscription</h3>
+                <button class="expand-btn" id="expandSubscriptionBtn">
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+            <div class="subscription-minimized" id="subscriptionMinimized">
+                <div class="swiper subscriptionSwiper">
+                    <div class="swiper-wrapper" id="subscriptionItems">
+                        <div class="swiper-slide sub-item"><img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?w=100" alt="Milk"><span>Milk</span></div>
+                        <div class="swiper-slide sub-item"><img src="https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=100" alt="Bread"><span>Bread</span></div>
+                        <div class="swiper-slide sub-item"><img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=100" alt="Eggs"><span>Eggs</span></div>
+                        <div class="swiper-slide sub-item"><img src="https://images.unsplash.com/photo-1560807707-8cc77767d783?w=100" alt="Fruits"><span>Fruits</span></div>
+                        <div class="swiper-slide sub-item"><img src="https://images.unsplash.com/photo-1597362875127-2c6e5a8bf6f4?w=100" alt="Juice"><span>Juice</span></div>
+                        <div class="swiper-slide sub-item"><img src="https://images.unsplash.com/photo-1587593815805-6e7f96a13dba?w=100" alt="Veggies"><span>Veggies</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="subscription-expanded" id="subscriptionExpanded" style="display: none;">
+                <div class="subscription-plans">
+                    <div class="plan"><h4>Basic</h4><p>₹999/month</p><button>Subscribe</button></div>
+                    <div class="plan popular"><h4>Family</h4><p>₹1999/month</p><button>Subscribe</button></div>
+                    <div class="plan"><h4>Premium</h4><p>₹2999/month</p><button>Subscribe</button></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ads Section -->
+    <section class="ads-section">
+        <div class="container">
+            <div class="ad-banner">
+                <a href="#">
+                    <img src="https://via.placeholder.com/1200x200?text=Big+Sale!+Up+to+50%+Off+on+Organic+Products" alt="Advertisement">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Greetings -->
+    <section class="special-greetings">
+        <div class="container">
+            <div class="greeting-card">
+                <div class="greeting-text">
+                    <h3>🎊 Welcome Offer! 🎊</h3>
+                    <p>Get 15% off on first order</p>
+                    <p class="code">Use Code: <strong>WELCOME15</strong></p>
+                </div>
+                <div class="special-items">
+                    <div class="special-item"><img src="https://via.placeholder.com/80x80?text=Combo1"><p>Breakfast</p><span>₹299</span></div>
+                    <div class="special-item"><img src="https://via.placeholder.com/80x80?text=Combo2"><p>Snacks</p><span>₹399</span></div>
+                    <div class="special-item"><img src="https://via.placeholder.com/80x80?text=Combo3"><p>Party</p><span>₹999</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Feedback -->
+    <section class="customer-feedback">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-star"></i> Customer Reviews</h2>
+            </div>
+            <div class="swiper feedbackSwiper">
+                <div class="swiper-wrapper" id="feedbackSlider"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col"><h3>FreshKart</h3><p>India's fastest growing grocery delivery</p></div>
+                <div class="footer-col"><h4>About</h4><a href="#">Contact Us</a><a href="#">About Us</a></div>
+                <div class="footer-col"><h4>Policy</h4><a href="#">Return Policy</a><a href="#">Terms</a></div>
+                <div class="footer-col"><h4>Help</h4><a href="#">FAQs</a><a href="#">Shipping</a></div>
+            </div>
+            <div class="footer-bottom"><p>© 2024 FreshKart - All Rights Reserved</p></div>
+        </div>
+    </footer>
+
+    <!-- Bottom Navigation Bar (Sticky) -->
+    <nav class="bottom-nav" id="bottomNav">
+        <a href="index.html" class="nav-item active" data-page="home">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="orders.html" class="nav-item" data-page="orders">
+            <i class="fas fa-shopping-bag"></i>
+            <span>Orders</span>
+        </a>
+        <a href="categories.html" class="nav-item" data-page="categories">
+            <i class="fas fa-th-large"></i>
+            <span>Category</span>
+        </a>
+        <a href="account.html" class="nav-item" data-page="account">
+            <i class="fas fa-user"></i>
+            <span>Account</span>
+        </a>
+        <a href="#" class="nav-item" id="bottomCartBtn">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Cart</span>
+            <span class="bottom-cart-count" id="bottomCartCount">0</span>
+        </a>
+    </nav>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar"><div class="cart-header"><h3>My Cart</h3><button class="close-cart" id="closeCart">&times;</button></div><div class="cart-items" id="cartItemsList"></div><div class="cart-footer"><div class="cart-total"><span>Total:</span><span id="cartTotalPrice">₹0</span></div><button class="checkout-btn">Place Order</button></div></div>
+    <div class="overlay" id="overlay"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
